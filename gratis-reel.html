@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gratis Reel-Idee für dein Restaurant — ReelBook</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090B;
+    --surface: #18181B;
+    --surface2: #27272A;
+    --border: #3F3F46;
+    --purple: #7C3AED;
+    --purple-light: #A78BFA;
+    --pink: #EC4899;
+    --green: #C6F135;
+    --text: #FAFAFA;
+    --text-muted: #A1A1AA;
+    --text-dim: #71717A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  .nav {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky; top: 0;
+    background: rgba(9,9,11,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .nav .container { display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-size: 18px; font-weight: 700; }
+  .nav-logo span { color: var(--purple-light); }
+  .nav-sub { font-size: 12px; color: var(--text-dim); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute; top: -150px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(198,241,53,0.1);
+    border: 1px solid rgba(198,241,53,0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--green), var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 550px;
+    margin: 0 auto 16px;
+    line-height: 1.7;
+  }
+  .hero-note {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+
+  /* REEL CARD */
+  .reel-section { padding: 0 0 80px; }
+  .reel-main {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .reel-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .reel-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .reel-title {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .reel-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .reel-tags { display: flex; gap: 8px; flex-wrap: wrap; align-self: center; }
+  .reel-tag {
+    padding: 6px 14px;
+    background: var(--surface2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .reel-tag.green { background: rgba(198,241,53,0.1); color: var(--green); border: 1px solid rgba(198,241,53,0.2); }
+
+  .reel-body { padding: 36px; }
+  .reel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  /* DIALOG */
+  .dialog-section { }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    width: 10px;
+    height: 2px;
+    background: var(--pink);
+  }
+  .section-label.green { color: var(--green); }
+  .section-label.green::before { background: var(--green); }
+  .section-label.blue { color: var(--purple-light); }
+  .section-label.blue::before { background: var(--purple-light); }
+
+  .hook-box {
+    background: linear-gradient(135deg, rgba(236,72,153,0.06), rgba(124,58,237,0.03));
+    border-left: 3px solid var(--pink);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 24px;
+  }
+  .hook-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  .dialog-box {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .dialog-line {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 10px;
+  }
+  .dialog-line:last-child { border-bottom: none; }
+  .dialog-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+  .dialog-text {
+    font-size: 14px;
+    color: var(--purple-light);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .caption-box {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .caption-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* SHOTLISTE */
+  .shot-list { }
+  .shot {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .shot:last-child { border-bottom: none; }
+  .shot-num {
+    width: 32px;
+    height: 32px;
+    background: rgba(198,241,53,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+  .shot-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-top: 5px;
+  }
+
+  /* VARIANTEN */
+  .variants { padding: 80px 0; }
+  .variants-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .variant-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .variant-card:hover { border-color: var(--purple); }
+  .variant-num {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .variant-num.v1 { color: var(--green); }
+  .variant-num.v2 { color: var(--pink); }
+  .variant-num.v3 { color: var(--purple-light); }
+  .variant-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .variant-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* TEASER */
+  .teaser { padding: 80px 0; text-align: center; }
+  .teaser-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .teaser-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple), var(--green), transparent);
+  }
+  .teaser-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .teaser h2 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .teaser-text {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 10px;
+    line-height: 1.7;
+  }
+  .teaser-list {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 24px 0 32px;
+  }
+  .teaser-item {
+    font-size: 14px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .teaser-check { color: var(--green); font-weight: 700; }
+  .teaser-price {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .teaser-price-big {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .teaser-price-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  .btn-primary {
+    padding: 16px 44px;
+    background: var(--purple);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: #5B21B6; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,58,237,0.3); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-text { font-size: 13px; color: var(--text-dim); }
+  .footer-text a { color: var(--purple-light); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .reel-grid { grid-template-columns: 1fr; }
+    .variants-grid { grid-template-columns: 1fr; }
+    .reel-header { flex-direction: column; }
+    .teaser-list { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <div>
+      <div class="nav-logo">Reel<span>Book</span></div>
+      <div class="nav-sub">Gratis Reel-Idee zum Ausprobieren</div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-badge">&#127381; Kostenlos &mdash; keine Anmeldung n&ouml;tig</div>
+    <h1>Eine fertige Reel-Idee<br><em>zum direkt Umsetzen.</em></h1>
+    <p class="hero-sub">Komplett ausgearbeitet: Hook, Dialog, Shotliste, Caption. Du musst nur noch filmen.</p>
+    <p class="hero-note">Das ist 1 von 15 Ideen aus dem ReelBook &mdash; dem Content-Plan f&uuml;r Restaurants.</p>
+  </div>
+</section>
+
+<section class="reel-section">
+  <div class="container">
+    <div class="reel-main">
+      <div class="reel-header">
+        <div>
+          <div class="reel-num">REEL 05</div>
+          <div class="reel-title">Der Gedankenleser</div>
+          <div class="reel-desc">Der Kellner &bdquo;liest&ldquo; die Gedanken des Gastes bei der Rechnung &mdash; mit witzigem inneren Monolog.</div>
+        </div>
+        <div class="reel-tags">
+          <span class="reel-tag green">Leicht umsetzbar</span>
+          <span class="reel-tag">7&ndash;15 Sek.</span>
+          <span class="reel-tag">Trending Sound</span>
+        </div>
+      </div>
+
+      <div class="reel-body">
+        <div style="margin-bottom:28px;">
+          <div class="section-label">Hook &mdash; Die ersten 2 Sekunden</div>
+          <div class="hook-box">
+            <div class="hook-text">&bdquo;POV: Der Kellner wei&szlig; genau, was du gerade denkst.&ldquo;</div>
+          </div>
+        </div>
+
+        <div class="reel-grid">
+          <div class="dialog-section">
+            <div class="section-label">Dialog</div>
+            <div class="dialog-box">
+              <div class="dialog-line">
+                <div class="dialog-role">Gast:</div>
+                <div class="dialog-text">&bdquo;Ich m&ouml;chte bitte bezahlen!&ldquo;</div>
+              </div>
+              <div class="dialog-line">
+                <div class="dialog-role">Kellner:</div>
+                <div class="dialog-text">&bdquo;Alles klar, hier ist die Rechnung.&ldquo;</div>
+              </div>
+              <div class="dialog-line">
+                <div class="dialog-role">Kellner:</div>
+                <div class="dialog-text" style="color: var(--text-dim); font-style: italic;">(denkt) &bdquo;Man, wie viel Trinkgeld geb ich denn jetzt wieder? Service war ja eigentlich gut, Essen war auch top. Vielleicht so 20% oder doch mehr...&ldquo;</div>
+              </div>
+              <div class="dialog-line">
+                <div class="dialog-role">Gast:</div>
+                <div class="dialog-text">&bdquo;Darf man hier denn noch in Ruhe nachdenken?!&ldquo;</div>
+              </div>
+            </div>
+
+            <div class="section-label blue">Caption</div>
+            <div class="caption-box">
+              <div class="caption-text">&bdquo;POV: Wir helfen auch bei schweren Entscheidungen &#128514;&ldquo;<br><br>#restaurant #gastro #kellner #trinkgeld #pov #reels #gastronomie #lustig</div>
+            </div>
+          </div>
+
+          <div class="shot-list-section">
+            <div class="section-label green">Shotliste</div>
+            <div class="shot">
+              <div class="shot-num">01</div>
+              <div class="shot-text">Gast ruft nach der Rechnung. Kellner bringt sie ihm direkt an den Tisch. <strong>Medium Shot.</strong></div>
+            </div>
+            <div class="shot">
+              <div class="shot-num">02</div>
+              <div class="shot-text">Gast schaut sich die Rechnung genau an, ist nachdenklich. <strong>Close-Up auf Gesicht.</strong></div>
+            </div>
+            <div class="shot">
+              <div class="shot-num">03</div>
+              <div class="shot-text">Gast wird weiter gefilmt, w&auml;hrend der Kellner die &bdquo;Gedanken&ldquo; des Gastes als Voiceover spricht. <strong>Medium Shot, Gast im Fokus.</strong></div>
+            </div>
+            <div class="shot">
+              <div class="shot-num">04</div>
+              <div class="shot-text">Gast regt sich auf. Kellner grinst. <strong>Two Shot, beide im Bild.</strong></div>
+            </div>
+
+            <div style="margin-top:28px;">
+              <div class="section-label green">Pro-Tipps</div>
+              <div style="background:var(--surface2);border-radius:12px;padding:20px;">
+                <div class="shot">
+                  <div class="shot-num" style="background:rgba(124,58,237,0.1);color:var(--purple-light);">&#128161;</div>
+                  <div class="shot-text">Der &bdquo;Gedanken&ldquo;-Teil funktioniert am besten als Voiceover oder Text-Overlay mit Trending Sound.</div>
+                </div>
+                <div class="shot">
+                  <div class="shot-num" style="background:rgba(124,58,237,0.1);color:var(--purple-light);">&#127916;</div>
+                  <div class="shot-text">Drehe die Szene einmal mit Dialog (Variante A) und einmal stumm mit Trending Sound + Text (Variante B).</div>
+                </div>
+                <div class="shot">
+                  <div class="shot-num" style="background:rgba(124,58,237,0.1);color:var(--purple-light);">&#9200;</div>
+                  <div class="shot-text">Jeder Shot max. 2&ndash;3 Sekunden. Schneller Schnitt h&auml;lt die Spannung.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variants">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:10px;">
+      <div class="section-label" style="justify-content:center;">Eine Idee, drei Videos</div>
+      <h2 style="font-size:clamp(24px,4vw,34px);font-weight:700;">Aus diesem Reel machst du 3 Versionen</h2>
+      <p style="font-size:15px;color:var(--text-muted);max-width:500px;margin:10px auto 0;">Einmal drehen, dreimal posten. Verschiedene Formate sprechen verschiedene Zuschauer an.</p>
+    </div>
+    <div class="variants-grid">
+      <div class="variant-card">
+        <div class="variant-num v1">01</div>
+        <h3>Gesprochen</h3>
+        <p>Die Personen sprechen den Dialog direkt. Am pers&ouml;nlichsten und nahbarsten.</p>
+      </div>
+      <div class="variant-card">
+        <div class="variant-num v2">02</div>
+        <h3>Lippensync + Sound</h3>
+        <p>Lippen bewegen, Trending Sound drunterlegen, Dialog als Text einblenden. Mehr Reichweite.</p>
+      </div>
+      <div class="variant-card">
+        <div class="variant-num v3">03</div>
+        <h3>Bilder + Text</h3>
+        <p>Nur sch&ouml;ne Aufnahmen mit Text-Overlay. Am einfachsten &mdash; niemand muss sprechen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="teaser">
+  <div class="container">
+    <div class="teaser-box">
+      <div class="teaser-label">Das war 1 von 15 Ideen</div>
+      <h2>Im ReelBook bekommst du<br>den kompletten Plan.</h2>
+      <p class="teaser-text">15 fertige Reel-Ideen wie diese. Plus Content-Strategie, die 8 Regeln f&uuml;r guten Restaurant-Content, Setup-Guide und Upload-Checkliste.</p>
+      <div class="teaser-list">
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> 15 fertige Reel-Ideen</div>
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> Dialoge &amp; Shotlisten</div>
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> Captions &amp; Hashtags</div>
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> Content-Strategie</div>
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> Die 8 Regeln</div>
+        <div class="teaser-item"><span class="teaser-check">&#10003;</span> Upload-Checkliste</div>
+      </div>
+      <div class="teaser-price">Agentur: <s>1.500&ndash;5.000 &euro;/Monat</s></div>
+      <div class="teaser-price-big">149 &euro;</div>
+      <div class="teaser-price-sub">Einmalig. Kein Abo. Sofort-Download.</div>
+      <a href="https://Markenbildmedien.github.io/restaurants/reelbook-landingpage.html" class="btn-primary">Alle 15 Reel-Ideen sichern &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">&copy; 2025 Markenbild Medien &mdash; <a href="mailto:info@markenbild-medien.de">info@markenbild-medien.de</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
